@@ -1,14 +1,14 @@
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
-const io = require('socket.io');
+
+const app = express();
+const server = http.Server(app);
+const io = require('socket.io')(server);
 
 // ---------------------------------------------------------------------------
 // Configuration
 // ---------------------------------------------------------------------------
-
-const app = express();
-const server = http.Server(app);
 
 server.listen(process.env.PORT || 8000, () => {
   console.log(`[ server.js ] Listening on port ${server.address().port}`);
@@ -16,7 +16,7 @@ server.listen(process.env.PORT || 8000, () => {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.set('view engine', 'ejs')
+app.set('view engine', 'ejs');
 
 // ---------------------------------------------------------------------------
 // Socket Event Listeners
@@ -36,8 +36,8 @@ io.on('connection', (socket) => {
 
 app.get('/', (req, res) => {
   res.render('show');
-})
+});
 
 app.get('/edit', (req, res) => {
   res.render('edit');
-})
+});
