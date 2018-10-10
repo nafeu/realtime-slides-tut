@@ -1,0 +1,27 @@
+{
+  "name": "realtime-slides-tut",
+  "version": "1.0.0",
+  "description": "Realtime slides tutorial with socket.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "realtime",
+    "slides",
+    "tutorial",
+    "socketio"
+  ],
+  "author": "Nafeu Nasir <nafeu.nasir@gmail.com> (http://nafeu.com/)",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "1.18.3",
+    "express": "4.16.3",
+    "socket.io": "2.1.1"
+  },
+  "devDependencies": {
+    "eslint": "5.6.1",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-plugin-import": "2.14.0"
+  }
+}
