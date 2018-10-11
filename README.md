@@ -2,14 +2,17 @@
 
 Demonstration project for a realtime presentation slides application tutorial
 
-## Installation / Offline Usage
+## Installation
 
 ```
 git clone https://github.com/nafeu/realtime-slides-tut.git [PROJECT_NAME]
 cd [PROJECT_NAME]
 npm install
-node server.js
 ```
+
+## Offline Usage
+
+To start the application, run `npm start` inside the project directory.
 
 #### Presentation View
 
@@ -25,12 +28,21 @@ Open `localhost:8000/edit` in another window or `[LOCAL_IP_ADDRESS]:8000/edit` o
 
 ```
 heroku create
-git push heroku master
 heroku features:enable http-session-affinity
+git push heroku master
 ```
+
+Open the generated `[APP_URL]` and try it out, connect to the `/edit` page on a separate device and enjoy your new realtime presentation slides solution.
 
 #### Delete Heroku App
 
+Make sure you are in the correct project directory.
+
+```
+heroku apps:destroy
+```
+
+Follow the rest of the CLI prompt.
 
 ## Credits
 
