@@ -4,13 +4,61 @@
   <title>Realtime Slides Tutorial | Edit</title>
   <style type="text/css">
 
+    body {
+      background-color: #f1f2f6;
+      color: #222f3e;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+      font-size: 1.25em;
+      width: 100%;
+      margin: 0;
+    }
+
+    *:focus {
+      outline: none;
+    }
+
+    textarea {
+      width: 100%;
+      border: none;
+      margin-bottom: 20px;
+      resize: none;
+      padding: 25px;
+      font-size: 1.25em;
+    }
+
+    #submit-button, #deck p {
+      cursor: pointer;
+    }
+
+    #submit-button:active, #deck p:active {
+      opacity: 0.5;
+    }
+
+    #submit-button {
+      padding: 25px 25px 25px 25px;
+      text-align: center;
+      margin: 0px 25px 25px 25px;
+      border-radius: 5px;
+      background-color: #01a3a4;
+      color: white;
+    }
+
+    #deck {
+      padding: 0px 25px 0px 25px;
+    }
+
+    #deck p {
+      background-color: white;
+      padding: 25px;
+      border-radius: 5px;
+      margin-top: 0px;
+    }
+
   </style>
 </head>
 <body>
-  <textarea placeholder="Enter markdown"></textarea>
-  <br>
+  <textarea rows="8" placeholder="Enter markdown"></textarea>
   <div id="submit-button" onclick="handleSubmit()">Submit</div>
-  <br>
   <div id="deck"></div>
 
   <script type="text/javascript">
