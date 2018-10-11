@@ -15,8 +15,6 @@
   "author": "Nafeu Nasir <nafeu.nasir@gmail.com> (http://nafeu.com/)",
   "license": "MIT",
   "dependencies": {
-    "body-parser": "1.18.3",
-    "ejs": "2.6.1",
     "express": "4.16.3",
     "showdown": "1.8.6",
     "socket.io": "2.1.1"
