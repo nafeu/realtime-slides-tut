@@ -5,7 +5,7 @@
   <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-  <h1>Show page</h1>
+  <div id="slide"></div>
 
   <script type="text/javascript">
 
@@ -16,12 +16,12 @@
     })
 
     socket.on('update slide', (data) => {
-      console.log(`[ show.ejs ] Update slide: ${JSON.stringify(data)}`);
+      console.log(`[ show.ejs ] Update slide: ${data}`);
       updateSlide(data);
     })
 
-    function updateSlide(markup) {
-      console.log("UPDATE SLIDE: " + markup)
+    function updateSlide(html) {
+      document.querySelector("#slide").innerHTML = html;
     }
 
   </script>
