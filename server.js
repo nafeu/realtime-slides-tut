@@ -19,18 +19,6 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 
 // ---------------------------------------------------------------------------
-// Socket Event Listeners
-// ---------------------------------------------------------------------------
-
-io.on('connection', (socket) => {
-  console.log(`[ server.js ] ${socket.id} connected`);
-
-  socket.on('disconnect', () => {
-    console.log(`[ server.js ] ${socket.id} disconnected`);
-  });
-});
-
-// ---------------------------------------------------------------------------
 // Routes
 // ---------------------------------------------------------------------------
 
@@ -40,4 +28,16 @@ app.get('/', (req, res) => {
 
 app.get('/edit', (req, res) => {
   res.render('edit');
+});
+
+// ---------------------------------------------------------------------------
+// Socket Events
+// ---------------------------------------------------------------------------
+
+io.on('connection', (socket) => {
+  console.log(`[ server.js ] ${socket.id} connected`);
+
+  socket.on('disconnect', () => {
+    console.log(`[ server.js ] ${socket.id} disconnected`);
+  });
 });

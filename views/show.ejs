@@ -2,8 +2,19 @@
 <html>
 <head>
   <title>Realtime Slides Tutorial | Show</title>
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
   <h1>Show page</h1>
+
+  <script type="text/javascript">
+
+    const socket = io();
+
+    socket.on('connect', () => {
+      console.log(`[ show.ejs ] Connected with id: ${socket.id}`);
+    })
+
+  </script>
 </body>
 </html>

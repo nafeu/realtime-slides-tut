@@ -2,8 +2,19 @@
 <html>
 <head>
   <title>Realtime Slides Tutorial | Edit</title>
+  <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-  <h1>Edit Page</h1>
+  <h1>Edit page</h1>
+
+  <script type="text/javascript">
+
+    const socket = io();
+
+    socket.on('connect', () => {
+      console.log(`[ edit.ejs ] Connected with id: ${socket.id}`);
+    })
+
+  </script>
 </body>
 </html>
