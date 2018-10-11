@@ -3,9 +3,38 @@
 <head>
   <title>Realtime Slides Tutorial | Show</title>
   <script src="/socket.io/socket.io.js"></script>
+  <style type="text/css">
+
+    body {
+      background-color: #f1f2f6;
+      font-family: 'Helvetica', 'Arial', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5, p {
+      margin-bottom: 0px;
+    }
+
+    #slide {
+      margin: auto;
+      height: 50%;
+      width: 100%;
+      position: fixed;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      text-align: center;
+      font-size: 6vmin;
+      display: inline-block;
+    }
+
+  </style>
 </head>
 <body>
-  <div id="slide"></div>
+  <div id="slide">
+    <h1>Realtime Slides ⏱</h1>
+    <p>Improvise your presentations, one slide at a time.</p>
+  </div>
 
   <script type="text/javascript">
 
