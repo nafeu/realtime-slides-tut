@@ -2,18 +2,66 @@
 <html>
 <head>
   <title>Realtime Slides Tutorial | Edit</title>
-  <script src="/socket.io/socket.io.js"></script>
 </head>
 <body>
-  <h1>Edit page</h1>
+  <textarea placeholder="Enter markdown"></textarea>
+  <br>
+  <div id="submit-button" onclick="handleSubmit()">Submit</div>
+  <br>
+  <div id="deck"></div>
 
   <script type="text/javascript">
+    const textarea = document.querySelector("textarea");
+    const deck = document.querySelector("#deck");
 
-    const socket = io();
+    const slides = [
+      '#Realtime Slides ⏱\nImprovise your presentations, one slide at a time.',
+      '#Clever Libraries 🛠\nPowered by Express.js, Socket.io, Showdown and some sweet Vanilla JS',
+      '#Have Some Fun! 🎉\nFork this project and experiment with the realtime logic.',
+      '#👉 @nafeu\nFollow me at **github.com/nafeu** for more realtime tomfoolery.',
+    ];
 
-    socket.on('connect', () => {
-      console.log(`[ edit.ejs ] Connected with id: ${socket.id}`);
+    textarea.addEventListener("keydown", (event) => {
+      if (event.keyCode == 13 && !event.shiftKey) {
+        event.preventDefault();
+        handleSubmit();
+      }
     })
+
+    function handleSubmit() {
+      if (textarea.value.length > 0) {
+        slides.unshift(textarea.value);
+        updateDeck();
+        sendUpdateSlideRequest(textarea.value);
+      }
+      textarea.value = "";
+    }
+
+    function updateDeck() {
+      deck.innerHTML = "";
+
+      slides.forEach((markdown) => {
+        const slideNode = document.createElement("p");
+        slideNode.innerText = markdown;
+        slideNode.onclick = () => {
+          sendUpdateSlideRequest(markdown);
+        }
+        deck.appendChild(slideNode);
+      })
+    }
+
+    function sendUpdateSlideRequest(markdown) {
+      const { protocol } = window.location;
+      const url = `${protocol}/api/updateSlide?markdown=${encodeURIComponent(markdown)}`;
+      const xhttp = new XMLHttpRequest();
+
+      xhttp.open("GET", url, true);
+      xhttp.send();
+    }
+
+    (() => {
+      updateDeck();
+    })();
 
   </script>
 </body>

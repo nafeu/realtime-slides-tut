@@ -34,23 +34,6 @@ app.get('/edit', (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
-// API
-// ---------------------------------------------------------------------------
-
-app.get('/api/updateSlide', (req, res) => {
-  const { query } = req;
-  console.log(`[ server.js ] GET request to 'api/update' => ${JSON.stringify(query)}`);
-
-  if (query.markdown) {
-    const html = converter.makeHtml(query.markdown);
-    io.emit('update slide', html);
-    res.status(200).send(`Received 'updateSlide' request with: ${html}\n`);
-  } else {
-    res.status(400).send('Invalid parameters.\n');
-  }
-});
-
-// ---------------------------------------------------------------------------
 // Socket Events
 // ---------------------------------------------------------------------------
 
@@ -61,3 +44,31 @@ io.on('connection', (socket) => {
     console.log(`[ server.js ] ${socket.id} disconnected`);
   });
 });
+
+function updateSlide(markdown) {
+  io.emit('update slide', converter.makeHtml(markdown));
+}
+
+// ---------------------------------------------------------------------------
+// API
+// ---------------------------------------------------------------------------
+
+app.get('/api/updateSlide', (req, res) => {
+  console.log(`[ server.js ] GET request to 'api/updateSlide' => ${JSON.stringify(req.query)}`);
+
+  const { markdown } = req.query;
+
+  if (markdown) {
+    updateSlide(markdown);
+    res.status(200).send(`Received 'updateSlide' request with: ${markdown}\n`);
+  } else {
+    res.status(400).send('Invalid parameters.\n');
+  }
+});
+
+const introSlides = [
+  '#Realtime Slides ⏱\nImprovise your presentations, one slide at a time.',
+  '#Clever Libraries 🛠\nPowered by Express.js, Socket.io, Showdown and some sweet Vanilla JS',
+  '#Have Some Fun! 🎉\nFork this project and experiment with the realtime logic.',
+  '#👉 @nafeu\nFollow me at *github.com/nafeu* for more realtime tomfoolery.',
+];
