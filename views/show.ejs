@@ -15,6 +15,15 @@
       console.log(`[ show.ejs ] Connected with id: ${socket.id}`);
     })
 
+    socket.on('update slide', (data) => {
+      console.log(`[ show.ejs ] Update slide: ${JSON.stringify(data)}`);
+      updateSlide(data);
+    })
+
+    function updateSlide(markup) {
+      console.log("UPDATE SLIDE: " + markup)
+    }
+
   </script>
 </body>
 </html>

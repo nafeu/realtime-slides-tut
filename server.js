@@ -31,6 +31,22 @@ app.get('/edit', (req, res) => {
 });
 
 // ---------------------------------------------------------------------------
+// API
+// ---------------------------------------------------------------------------
+
+app.get('/api/updateSlide', (req, res) => {
+  const {query} = req;
+  console.log(`[ server.js ] GET request to 'api/update' => ${JSON.stringify(query)}`);
+
+  if (query.text) {
+    io.emit('update slide', query.text);
+    res.status(200).send(`Received 'updateSlide' request with text: '${query.text}'\n`);
+  } else {
+    res.status(400).send('Invalid parameters.\n');
+  }
+})
+
+// ---------------------------------------------------------------------------
 // Socket Events
 // ---------------------------------------------------------------------------
 
