@@ -40,12 +40,7 @@
 
     const socket = io();
 
-    socket.on('connect', () => {
-      console.log(`[ show.ejs ] Connected with id: ${socket.id}`);
-    });
-
     socket.on('update slide', (html) => {
-      console.log(`[ show.ejs ] Update slide: ${html}`);
       document.querySelector('#slide').innerHTML = html;
     });
 

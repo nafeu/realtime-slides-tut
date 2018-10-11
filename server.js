@@ -65,10 +65,3 @@ app.get('/api/updateSlide', (req, res) => {
     res.status(400).send('Invalid parameters.\n');
   }
 });
-
-const introSlides = [
-  '#Realtime Slides ⏱\nImprovise your presentations, one slide at a time.',
-  '#Clever Libraries 🛠\nPowered by Express.js, Socket.io, Showdown and some sweet Vanilla JS',
-  '#Have Some Fun! 🎉\nFork this project and experiment with the realtime logic.',
-  '#👉 @nafeu\nFollow me at *github.com/nafeu* for more realtime tomfoolery.',
-];
