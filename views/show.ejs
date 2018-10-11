@@ -7,6 +7,7 @@
 
     body {
       background-color: #f1f2f6;
+      color: #222f3e;
       font-family: 'Helvetica', 'Arial', sans-serif;
     }
 
@@ -17,14 +18,14 @@
     #slide {
       margin: auto;
       height: 50%;
-      width: 100%;
+      width: 70%;
       position: fixed;
       top:0;
       bottom:0;
       left:0;
       right:0;
       text-align: center;
-      font-size: 6vmin;
+      font-size: 5vmin;
       display: inline-block;
     }
 
@@ -40,6 +41,25 @@
 
     const socket = io();
 
+    const slides = {
+      interval: null,
+      slideIndex: 0,
+      data: [
+        "<h1>Realtime Slides ⏱</h1><p>Improvise your presentations, one slide at a time.</p>",
+        "<h1>Clever Libraries 🛠 </h1><p>Powered by Express.js, Socket.io, Showdown and some sweet Vanilla JS</p>",
+        "<h1>Have Some Fun! 🎉</h1><p>Fork this project and experiment with the realtime logic.</p>",
+        "<h1>👉 @nafeu</h1><p>Follow me at <strong>github.com/nafeu</strong> for more realtime tomfoolery.</p>"
+      ],
+      getNextSlide: function() {
+        if (this.slideIndex == this.data.length - 1) {
+          this.slideIndex = 0;
+        } else {
+          this.slideIndex++;
+        }
+        return this.data[this.slideIndex];
+      }
+    }
+
     socket.on('connect', () => {
       console.log(`[ show.ejs ] Connected with id: ${socket.id}`);
     })
@@ -47,11 +67,21 @@
     socket.on('update slide', (data) => {
       console.log(`[ show.ejs ] Update slide: ${data}`);
       updateSlide(data);
+
+      if (slides.interval) {
+        clearInterval(slides.interval);
+      }
     })
 
     function updateSlide(html) {
       document.querySelector("#slide").innerHTML = html;
     }
+
+    (() => {
+      slides.interval = setInterval(() => {
+        updateSlide(slides.getNextSlide());
+      }, 4000)
+    })();
 
   </script>
 </body>
