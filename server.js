@@ -1,10 +1,13 @@
 const express = require('express');
 const http = require('http');
 const bodyParser = require('body-parser');
+const showdown = require('showdown');
 
 const app = express();
 const server = http.Server(app);
 const io = require('socket.io')(server);
+
+const converter = new showdown.Converter();
 
 // ---------------------------------------------------------------------------
 // Configuration
@@ -35,16 +38,17 @@ app.get('/edit', (req, res) => {
 // ---------------------------------------------------------------------------
 
 app.get('/api/updateSlide', (req, res) => {
-  const {query} = req;
+  const { query } = req;
   console.log(`[ server.js ] GET request to 'api/update' => ${JSON.stringify(query)}`);
 
-  if (query.text) {
-    io.emit('update slide', query.text);
-    res.status(200).send(`Received 'updateSlide' request with text: '${query.text}'\n`);
+  if (query.markdown) {
+    const html = converter.makeHtml(query.markdown);
+    io.emit('update slide', html);
+    res.status(200).send(`Received 'updateSlide' request with: ${html}\n`);
   } else {
     res.status(400).send('Invalid parameters.\n');
   }
-})
+});
 
 // ---------------------------------------------------------------------------
 // Socket Events
