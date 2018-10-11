@@ -1,6 +1,6 @@
 # Realtime Slides with Socket.io Tutorial
 
-Demonstration project for a realtime presentation slides example application
+Demonstration project for a realtime presentation slides application tutorial
 
 ## Installation / Usage
 
