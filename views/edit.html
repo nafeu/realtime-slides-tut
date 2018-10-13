@@ -72,13 +72,6 @@
       '#Realtime Slides ⏱\nImprovise your presentations, one slide at a time.',
     ];
 
-    textarea.addEventListener("keydown", (event) => {
-      if (event.keyCode == 13 && !event.shiftKey) {
-        event.preventDefault();
-        handleSubmit();
-      }
-    })
-
     function handleSubmit() {
       if (textarea.value.length > 0) {
         slides.unshift(textarea.value);
