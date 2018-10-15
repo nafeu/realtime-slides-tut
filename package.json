@@ -1,7 +1,7 @@
 {
   "name": "realtime-slides-tut",
   "version": "1.0.0",
-  "description": "Realtime slides tutorial with socket.io",
+  "description": "Real-time slides tutorial with Socket.io",
   "main": "server.js",
   "engines": {
     "node": "8.12.0"
