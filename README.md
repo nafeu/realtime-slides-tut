@@ -1,6 +1,6 @@
-# Realtime Slides with Socket.io Tutorial
+# Real-time Presentation Slides with Socket.io, Node.js and Javascript
 
-Demonstration project for a realtime presentation slides application tutorial
+Demo project for a blog post on building a real-time presentation slides app.
 
 ## Installation
 
